@@ -5,7 +5,8 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { createUser } from "../utils/firebase";
 
-export default function BasicTextFields() {
+export default function Register() {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const handleSubmit = (e) => {
@@ -29,8 +30,14 @@ export default function BasicTextFields() {
         >
             <TextField
                 id="outlined-basic"
+                label="Name"
+                variant="filled"
+                onChange={(e) => setName(e.target.value)}
+            />
+            <TextField
+                id="outlined-basic"
                 label="Email"
-                variant="outlined"
+                variant="filled"
                 onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -41,7 +48,11 @@ export default function BasicTextFields() {
                 variant="filled"
                 onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" variant="contained">Register</Button>
+            <div style={{ marginTop: "1rem", textAlign: "left" }}>
+                <Button type="submit" variant="contained">
+                    Register
+                </Button>
+            </div>
         </Box>
     );
 }

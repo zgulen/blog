@@ -11,8 +11,9 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+
 //? register a new user-- goes to Register component
 export const createUser = async (email, password) => {
     try {
@@ -26,3 +27,5 @@ export const createUser = async (email, password) => {
         console.log(error)
     }
 };
+//? ////////////////////////////////////////////
+
