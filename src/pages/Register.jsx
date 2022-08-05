@@ -22,7 +22,7 @@ export default function Register() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                mt: "20%",
+                height: "100vh",
             }}
             noValidate
             autoComplete="off"
