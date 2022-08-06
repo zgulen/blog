@@ -42,9 +42,11 @@ export default function Login() {
                 const credential =
                     GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
+                sessionStorage.setItem("user", token);
                 // The signed-in user info.
                 const user = result.user;
                 // ...
+                navigate("/")
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -62,8 +64,7 @@ export default function Login() {
     const inputStyling = {
             boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
             borderRadius: "7px",
-            backgroundColor: "rgba(161, 199, 224, .4)"
-        
+            backgroundColor: "rgba(161, 199, 224, .4)",
     }
 
     const handleSubmit = (e) => {
