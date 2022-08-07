@@ -13,8 +13,8 @@ import { Link, useNavigate } from "react-router-dom";
 import {logOut} from "../utils/firebase"
 
 export default function MenuAppBar() {
+    const head = `<zgulen>`
     const navigate = useNavigate()
-    const { storage } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleMenu = (event) => {
@@ -28,6 +28,10 @@ export default function MenuAppBar() {
     const handleLogOut = () => {
         logOut(navigate)
     }
+    const linksStyle = {
+        textDecoration: "none",
+        color:"black"
+    }
 
     return (
         <Box>
@@ -38,8 +42,8 @@ export default function MenuAppBar() {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="div">
-                        Photos
+                    <Typography variant="h6" component="div" onClick={() => navigate("/")}>
+                        {head}
                     </Typography>
                     {sessionStorage.getItem("user") ? (
                         <div>
@@ -117,10 +121,10 @@ export default function MenuAppBar() {
                                     onClose={handleClose}
                                 >
                                     <MenuItem onClick={handleClose}>
-                                        <Link to="/login">Login</Link>
+                                        <Link style={linksStyle} to="/login">Login</Link>
                                     </MenuItem>
                                     <MenuItem onClick={handleClose}>
-                                        <Link to="/register">Register</Link>
+                                        <Link style={linksStyle} to="/register">Register</Link>
                                     </MenuItem>
                                 </Menu>
                             </div>
