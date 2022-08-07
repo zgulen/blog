@@ -1,9 +1,11 @@
-import React from 'react'
-
+import React from "react";
+import BlogCard from "../components/BlogCard";
 const DashBoard = () => {
-  return (
-    <div>DashBoard</div>
-  )
-}
+    return (
+        <div>
+            <BlogCard />
+        </div>
+    );
+};
 
-export default DashBoard
+export default DashBoard;

@@ -28,6 +28,7 @@ export const createUser = async (name, email, password, navigate) => {
             password
         );
         const user = userCredential;
+        sessionStorage.setItem("user", user.accessToken);
         user.user.displayName = name;
         console.log(user);
         navigate("/");
