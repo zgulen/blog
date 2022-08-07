@@ -11,11 +11,15 @@ import {
 } from "firebase/auth";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
-    const navigate = useNavigate()
+    const { storage, setStorage } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    console.log(storage);
 
     //? Login already exist user.
     const LoginUser = () => {
@@ -24,7 +28,7 @@ export default function Login() {
                 const user = userCredential.user;
                 console.log(user);
                 sessionStorage.setItem("user", user.accessToken);
-                navigate("/")
+                navigate("/");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -46,7 +50,7 @@ export default function Login() {
                 // The signed-in user info.
                 const user = result.user;
                 // ...
-                navigate("/")
+                navigate("/");
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -62,10 +66,11 @@ export default function Login() {
     };
 
     const inputStyling = {
-            boxShadow: "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-            borderRadius: "7px",
-            backgroundColor: "rgba(161, 199, 224, .4)",
-    }
+        boxShadow:
+            "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+        borderRadius: "7px",
+        backgroundColor: "rgba(161, 199, 224, .4)",
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -80,8 +85,8 @@ export default function Login() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "100vh",
-                fontWeight:600,
+                height: `calc(100vh - 65px)`,
+                fontWeight: 600,
             }}
             noValidate
             autoComplete="off"

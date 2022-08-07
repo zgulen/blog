@@ -1,6 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signOut,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -15,17 +20,31 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 //? register a new user-- goes to Register component
-export const createUser = async (email, password) => {
+export const createUser = async (name, email, password, navigate) => {
     try {
         let userCredential = await createUserWithEmailAndPassword(
             auth,
             email,
             password
         );
-        console.log(userCredential);
+        const user = userCredential;
+        user.user.displayName = name;
+        console.log(user);
+        navigate("/");
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 //? ////////////////////////////////////////////
 
+export const logOut = (navigate) => {
+    signOut(auth)
+        .then(() => {
+            // Sign-out successful.
+            sessionStorage.removeItem("user")
+            navigate("/login")
+        })
+        .catch((error) => {
+            // An error happened.
+        });
+};
