@@ -1,8 +1,12 @@
 import { createContext, useState } from "react";
 
 export const AuthContext = createContext();
-const initialValues = [
-    { username: "", phoneNumber: "", gender: "NO INFO" },
+export const initialValues = [
+    {
+        title: "React",
+        content: "",
+        imageUrl: "",
+    },
 ];
 
 export const AuthContextProvider = ({ children }) => {

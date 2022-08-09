@@ -2,3 +2,13 @@
   text-align: center;
 }
 
+.content{
+  overflow: auto;
+  height: 140px;
+  cursor: pointer;
+}
+.image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

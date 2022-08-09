@@ -10,11 +10,11 @@ import Menu from "@mui/material/Menu";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {logOut} from "../utils/firebase"
+import { logOut } from "../utils/firebase";
 
 export default function MenuAppBar() {
-    const head = `<zgulen>`
-    const navigate = useNavigate()
+    const head = `<zgulen>`;
+    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleMenu = (event) => {
@@ -26,12 +26,12 @@ export default function MenuAppBar() {
     };
 
     const handleLogOut = () => {
-        logOut(navigate)
-    }
+        logOut(navigate);
+    };
     const linksStyle = {
         textDecoration: "none",
-        color:"black"
-    }
+        color: "black",
+    };
 
     return (
         <Box>
@@ -42,7 +42,11 @@ export default function MenuAppBar() {
                         justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="div" onClick={() => navigate("/")}>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        onClick={() => navigate("/")}
+                    >
                         {head}
                     </Typography>
                     {sessionStorage.getItem("user") ? (
@@ -81,7 +85,7 @@ export default function MenuAppBar() {
                                     <MenuItem onClick={handleClose}>
                                         Dashboard
                                     </MenuItem>
-                                    <MenuItem onClick={handleClose}>
+                                    <MenuItem onClick={() => navigate("/new")}>
                                         Add Card
                                     </MenuItem>
                                     <MenuItem onClick={handleLogOut}>
@@ -121,10 +125,14 @@ export default function MenuAppBar() {
                                     onClose={handleClose}
                                 >
                                     <MenuItem onClick={handleClose}>
-                                        <Link style={linksStyle} to="/login">Login</Link>
+                                        <Link style={linksStyle} to="/login">
+                                            Login
+                                        </Link>
                                     </MenuItem>
                                     <MenuItem onClick={handleClose}>
-                                        <Link style={linksStyle} to="/register">Register</Link>
+                                        <Link style={linksStyle} to="/register">
+                                            Register
+                                        </Link>
                                     </MenuItem>
                                 </Menu>
                             </div>

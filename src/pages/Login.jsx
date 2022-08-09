@@ -15,11 +15,9 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
-    const { storage, setStorage } = useContext(AuthContext);
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    console.log(storage);
 
     //? Login already exist user.
     const LoginUser = () => {
