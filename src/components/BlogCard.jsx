@@ -10,18 +10,13 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/AuthContext";
 import { useFetch } from "../utils/firebase";
 
 export default function BlogCard() {
-    const { data, setData } = useContext(AuthContext);
     const { contactList } = useFetch();
-
     return (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
             {contactList?.map((item, index) => {
-                // console.log(item)
                 return (
                     <Card
                         key={index}
@@ -33,10 +28,10 @@ export default function BlogCard() {
                                     sx={{ bgcolor: red[500] }}
                                     aria-label="recipe"
                                 >
-                                    {/* {item.userEmail[0]} */}
+                                    {item.email[0]}
                                 </Avatar>
                             }
-                            title={item.userEmail}
+                            title={item.email}
                         />
                         <CardMedia
                             className="image"

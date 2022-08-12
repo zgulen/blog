@@ -16,15 +16,16 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
+    const { userEmail, setUserEmail } = useContext(AuthContext);
     const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
 
     //? Login already exist user.
     const LoginUser = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                setUserEmail(user.email);
                 sessionStorage.setItem("user", user.accessToken);
                 navigate("/");
             })
@@ -47,7 +48,8 @@ export default function Login() {
                 sessionStorage.setItem("user", token);
                 // The signed-in user info.
                 const user = result.user;
-                // ...
+                setUserEmail(user.email);
+                console.log(userEmail)
                 navigate("/");
             })
             .catch((error) => {

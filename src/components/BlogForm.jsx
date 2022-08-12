@@ -5,13 +5,10 @@ import Button from "@mui/material/Button";
 import { AddUser } from "../utils/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useFetch } from "../utils/firebase";
-
+import { useNavigate } from "react-router-dom";
 const BlogForm = () => {
-    const {contactList} = useFetch()
-    console.log(contactList);
-    const { data, setData } = useContext(AuthContext);
-    const { title, content, imageUrl } = data[0];
+    const { data, setData, userEmail } = useContext(AuthContext);
+    const navigate = useNavigate()
     const inputStyling = {
         boxShadow:
             "rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
@@ -20,20 +17,15 @@ const BlogForm = () => {
     };
 
     const handleChange = (e) => {
-        // const name=e.target.name;
-        // const value=e.target.value;
         const { name, value } = e.target;
-        // console.log(name,value)
-        setData([{ ...data[0], [name]: value }]);
+        setData([{ ...data[0], [name]: value, email: userEmail }]);
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data)
-        AddUser(data);
+        AddUser(data); 
+        navigate("/")
     };
-    // const handleAddUser = (e) => {
-    //     AddUser(data);
-    // };
+
     return (
         <Box
             component="form"
@@ -81,7 +73,6 @@ const BlogForm = () => {
             />
             <div style={{ marginTop: "1rem", textAlign: "left" }}>
                 <Button
-                    // onClick={handleAddUser}
                     type="submit"
                     variant="contained"
                 >

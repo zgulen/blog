@@ -10,11 +10,13 @@ import {
     onValue,
     push,
     ref,
-    remove,
+    // remove,
     set,
-    update,
+    // update,
 } from "firebase/database";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -41,19 +43,22 @@ export const createUser = async (name, email, password, navigate) => {
         const user = userCredential;
         sessionStorage.setItem("user", user.accessToken);
         user.user.displayName = name;
-        console.log(user);
         navigate("/");
     } catch (error) {
         console.log(error);
     }
 };
-
+const ResetEmail =() =>{
+    const { setUserEmail } = useContext(AuthContext);
+    setUserEmail("")
+}
 export const logOut = (navigate) => {
     signOut(auth)
         .then(() => {
             // Sign-out successful.
             sessionStorage.removeItem("user");
             navigate("/login");
+            ResetEmail()
         })
         .catch((error) => {
             // An error happened.
@@ -64,8 +69,7 @@ export const logOut = (navigate) => {
 //! FIREBASE REALTİME DATABASE OPERATİONS
 //? adding users inputs
 export const AddUser = (data) => {
-    const { title, content, imageUrl } = data[0];
-    console.log(data, title);
+    const { title, content, imageUrl, email } = data[0];
     const db = getDatabase();
     const userRef = ref(db, "blog/");
     const newUserRef = push(userRef);
@@ -73,6 +77,7 @@ export const AddUser = (data) => {
         title: title,
         data: content,
         img: imageUrl,
+        email: email,
     });
 };
 
