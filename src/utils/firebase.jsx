@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import  toast  from "react-hot-toast";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -43,9 +44,10 @@ export const createUser = async (name, email, password, navigate) => {
         const user = userCredential;
         sessionStorage.setItem("user", user.accessToken);
         user.user.displayName = name;
+        toast.success("Successfully Created an Account")
         navigate("/");
     } catch (error) {
-        console.log(error);
+        toast("alksdjalsk")
     }
 };
 const ResetEmail =() =>{
@@ -57,6 +59,7 @@ export const logOut = (navigate) => {
         .then(() => {
             // Sign-out successful.
             sessionStorage.removeItem("user");
+            toast.success("Logged Out")
             navigate("/login");
             ResetEmail()
         })

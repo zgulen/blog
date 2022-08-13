@@ -13,6 +13,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import toast from "react-hot-toast"
 
 export default function Login() {
     const navigate = useNavigate();
@@ -31,9 +32,8 @@ export default function Login() {
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode);
-                console.log(errorMessage);
+                // const errorMessage = error.message;
+                toast.error(errorCode)
             });
     };
     //? login with google
@@ -49,18 +49,18 @@ export default function Login() {
                 // The signed-in user info.
                 const user = result.user;
                 setUserEmail(user.email);
-                console.log(userEmail)
+                toast.success("Sign in Succesfully")
                 navigate("/");
             })
             .catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
-                const errorMessage = error.message;
+                // const errorMessage = error.message;
+                toast.error(errorCode)
                 // The email of the user's account used.
-                const email = error.customData.email;
+                // const email = error.customData.email;
                 // The AuthCredential type that was used.
-                const credential =
-                    GoogleAuthProvider.credentialFromError(error);
+                // const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
             });
     };
