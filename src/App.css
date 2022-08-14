@@ -3,7 +3,6 @@
 }
 
 .content{
-  overflow: auto;
   height: 140px;
   cursor: pointer;
 }
