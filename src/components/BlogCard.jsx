@@ -18,7 +18,6 @@ export default function BlogCard() {
     const navigate = useNavigate()
 
     const handleShowData = (id) =>{
-        console.log(id)
         navigate(`details/${id}`)
     }
     return (

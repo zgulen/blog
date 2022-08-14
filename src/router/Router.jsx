@@ -33,7 +33,7 @@ const Router = () => {
                 <Route path="new" element={<UpdateBlog />} />
 
                 <Route path="/details/:id" element={<PrivateRouter />}>
-                    <Route path="" element={<Details />} />
+                    <Route path="/details/:id" element={<Details />} />
                 </Route>
             </Routes>
         </BrowserRouter>
