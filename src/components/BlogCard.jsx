@@ -48,25 +48,6 @@ export default function BlogCard() {
                         />
                         <CardContent
                             className="content"
-                            sx={{
-                                textOverflow: "ellipsis",
-                                bgcolor: (theme) =>
-                                    theme.palette.mode === "dark"
-                                        ? "#101010"
-                                        : "grey.100",
-                                color: (theme) =>
-                                    theme.palette.mode === "dark"
-                                        ? "grey.300"
-                                        : "grey.800",
-                                border: "1px solid",
-                                borderColor: (theme) =>
-                                    theme.palette.mode === "dark"
-                                        ? "grey.800"
-                                        : "grey.300",
-                                borderRadius: 2,
-                                fontSize: "0.875rem",
-                                fontWeight: "700",
-                            }}
                             onClick= {()=>handleShowData(item.id)}
                         >
                             <Typography variant="body2" color="text.secondary">

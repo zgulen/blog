@@ -7,8 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { AuthContext } from "../context/AuthContext";
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logOut } from "../utils/firebase";
 

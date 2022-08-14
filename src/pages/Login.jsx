@@ -17,7 +17,7 @@ import toast from "react-hot-toast"
 
 export default function Login() {
     const navigate = useNavigate();
-    const { userEmail, setUserEmail } = useContext(AuthContext);
+    const { setUserEmail } = useContext(AuthContext);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 

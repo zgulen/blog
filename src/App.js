@@ -3,7 +3,7 @@ import './App.css';
 
 import Router from './router/Router';
 import { AuthContextProvider } from "./context/AuthContext"
-import { Toaster, resolveValue } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 
 function App() {
