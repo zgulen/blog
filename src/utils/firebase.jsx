@@ -47,7 +47,7 @@ export const createUser = async (name, email, password, navigate) => {
         toast.success("Successfully Created an Account")
         navigate("/");
     } catch (error) {
-        toast("alksdjalsk")
+        toast(error)
     }
 };
 const ResetEmail =() =>{
